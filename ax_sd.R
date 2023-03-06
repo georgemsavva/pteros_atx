@@ -98,6 +98,15 @@ pbkrtest::PBmodcomp(largeModel = lmerNL_0, smallModel = lmerNL_0b, nsim=1000)
 #* Anyway, lets look at the relationship with other parameters:
 #* 
 
-dat2 <- fread()
+dat2 <- read_excel(path="ATC baking DATA for 23_XXXX (Great British High Fibre Loaf 2022 crop wheat trials) AL.xlsx", sheet="forR", skip=3)
 
+library(psych)
 
+pca1 <- principal(dat2[,4:30],nfactors = 4, rotate="varimax")
+plot(pca1)
+summary(pca1)
+pca1$values |> plot()
+
+pca1$loadings
+
+fa1 <- fa(dat2[,4:30],nfactors = 4, rotate="varimax")
